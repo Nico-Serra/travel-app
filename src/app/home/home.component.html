@@ -1,0 +1,58 @@
+<div class="container">
+    @if(formInit){
+    <div class="mb-3">
+        <label for="" class="form-label">Mounth</label>
+        <div class="d-flex">
+            <select class="form-select form-select-lg" name="" id="" [(ngModel)]="mounth" required>
+                <option selected value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+            </select>
+            <button type="submit" class="btn btn_primary" (click)="saveMount()">
+                Send
+            </button>
+
+        </div>
+    </div>
+
+
+    }@else {
+    <h1 class="text-center">{{mounth}}</h1>
+    <div class="row g-3">
+        @if(mounth === "June"){
+        @for (item of [].constructor(30); track $index) {
+        <div class="col_customer">
+            <div class="card">
+                <div class="card-title text-center p-1">{{$index+1}}</div>
+                <div class="card-body">
+                    <app-modal></app-modal>
+
+                </div>
+            </div>
+        </div>
+        }
+        }@else {
+        @for (item of [].constructor(31); track $index) {
+        <div class="col_customer">
+            <div class="card">
+                <div class="card-title text-center p-1">{{$index+1}}</div>
+                <div class="card-body">
+                    <app-modal></app-modal>
+
+                </div>
+            </div>
+        </div>
+        }
+        }
+
+    </div>
+    }
+
+
+</div>
+
+<style scoped>
+    .col_customer {
+        width: calc(100%/7);
+    }
+</style>

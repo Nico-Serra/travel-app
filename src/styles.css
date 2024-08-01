@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: "Indie Flower";
+}
+
+.btn_primary{
+    background-color: #00171f;
+}
