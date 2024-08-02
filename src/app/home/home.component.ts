@@ -15,7 +15,8 @@ export class HomeComponent {
 
   formInit = true;
   mounth = "June";
-  dayOfMounth = 30;
+  travels = [];
+  
 
   saveMount() {
     //console.log(this.mounth);
@@ -28,6 +29,12 @@ export class HomeComponent {
       this.formInit = false;
       this.mounth =  localStorage.getItem('mounth')!
     }
+
+   this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
+
+    
+    console.log(this.travels);
+    
 
   }
 }

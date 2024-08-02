@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container py-3">
     @if(formInit){
     <div class="mb-3">
         <label for="" class="form-label">Mounth</label>
@@ -17,16 +17,15 @@
 
 
     }@else {
-    <h1 class="text-center">{{mounth}}</h1>
+    <h1 class="text-center py-3">{{mounth}}</h1>
     <div class="row g-3">
         @if(mounth === "June"){
         @for (item of [].constructor(30); track $index) {
         <div class="col_customer">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
-                <div class="card-body">
-                    <app-modal></app-modal>
-
+                <div class="card-body text-center">
+                    <app-modal [data]="$index+1" [mounth]="mounth"></app-modal>
                 </div>
             </div>
         </div>
@@ -34,10 +33,10 @@
         }@else {
         @for (item of [].constructor(31); track $index) {
         <div class="col_customer">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
-                <div class="card-body">
-                    <app-modal></app-modal>
+                <div class="card-body text-center">
+                    <app-modal [data]="$index" [mounth]="mounth"></app-modal>
 
                 </div>
             </div>
