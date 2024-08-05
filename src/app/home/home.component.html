@@ -1,6 +1,12 @@
+@if (formInit) {
+<app-jumbotron [title]="'Welcome to Travel App'" [subTitle]="'Here you can plan and manage your trips'"></app-jumbotron>
+}@else {
+<app-jumbotron [title]="'Select the days you will need to travel'"
+    [subTitle]="'Click on + and add the data for yout trip'"></app-jumbotron>
+}
 <div class="container py-3">
     @if(formInit){
-    <div class="mb-3">
+    <div class="mb-3" id="selectMounth">
         <label for="" class="form-label">Mounth</label>
         <div class="d-flex">
             <select class="form-select form-select-lg" name="" id="" [(ngModel)]="mounth" required>
@@ -36,7 +42,7 @@
             <div class="card h-100">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
                 <div class="card-body text-center">
-                    <app-modal [data]="$index" [mounth]="mounth"></app-modal>
+                    <app-modal [data]="$index+1" [mounth]="mounth"></app-modal>
 
                 </div>
             </div>
@@ -45,7 +51,25 @@
         }
 
     </div>
+    @if (travels) {
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 my-5">
+        @for (travel of travels; track $index) {
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center py-1">{{travel.place}}</h2>
+                    <h4>{{travel.date}}</h4>
+                    <img class="mw-100 rounded-2" src="{{travel.image}}" alt="">
+                    <p>{{travel.description}}</p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
     }
+    }
+
+
 
 
 </div>

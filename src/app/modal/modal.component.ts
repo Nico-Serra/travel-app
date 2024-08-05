@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { log } from 'console';
 
@@ -13,6 +13,7 @@ import { log } from 'console';
 export class ModalComponent {
   @Input() data!: number;
   @Input() mounth!: string;
+  @Output() evento: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   visible = false
 
@@ -52,6 +53,8 @@ export class ModalComponent {
     this.description = '';
     this.image = '';
     this.visible = true
+
+    this.evento.emit(this.travels)
 
   }
 

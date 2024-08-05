@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { LocalStorageService } from '../local-storage.service';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
+import { JumbotronComponent } from '../jumbotron/jumbotron.component';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, ModalComponent],
+  imports: [FormsModule, ModalComponent, JumbotronComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -15,8 +17,8 @@ export class HomeComponent {
 
   formInit = true;
   mounth = "June";
-  travels = [];
-  
+  travels: Array<{ place: string, date: string, description: string, image: string }> = [];
+
 
   saveMount() {
     //console.log(this.mounth);
@@ -27,14 +29,15 @@ export class HomeComponent {
   ngOnInit() {
     if (localStorage.getItem('mounth')) {
       this.formInit = false;
-      this.mounth =  localStorage.getItem('mounth')!
+      this.mounth = localStorage.getItem('mounth')!
     }
 
-   this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
+    this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
+    //console.log(this.travels[0]);
 
-    
-    console.log(this.travels);
-    
+  }
 
+  eventHandler(event) {
+    this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
   }
 }
