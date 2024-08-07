@@ -5,6 +5,8 @@ import { ModalComponent } from '../modal/modal.component';
 import { JumbotronComponent } from '../jumbotron/jumbotron.component';
 
 
+
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -17,7 +19,7 @@ export class HomeComponent {
 
   formInit = true;
   mounth = "June";
-  travels: Array<{ place: string, date: string, description: string, image: string }> = [];
+  travels: Array<{ place: string, date: string, description: string, image: string, indexOfMounth: number }> = [];
 
 
   saveMount() {
@@ -33,11 +35,14 @@ export class HomeComponent {
     }
 
     this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
-    //console.log(this.travels[0]);
+    this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
+    //console.log(this.travels);
 
   }
 
-  eventHandler(event) {
+  onFiglioButtonClick(index: number) {
+    //console.log(`Il pulsante del componente figlio è stato cliccato! ${index}`);
     this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
+    this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
   }
 }

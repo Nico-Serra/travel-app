@@ -13,7 +13,8 @@ import { log } from 'console';
 export class ModalComponent {
   @Input() data!: number;
   @Input() mounth!: string;
-  @Output() evento: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() buttonClicked = new EventEmitter<void>();
+
 
   visible = false
 
@@ -48,14 +49,20 @@ export class ModalComponent {
     //console.log(this.travels);
 
     localStorage.setItem(`travels`, JSON.stringify(this.travels))
+    this.buttonClicked.emit();
+
+
 
     this.place = '';
     this.description = '';
     this.image = '';
     this.visible = true
 
-    this.evento.emit(this.travels)
-
   }
+
+
+
+
+
 
 }

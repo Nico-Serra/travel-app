@@ -23,15 +23,16 @@
 
 
     }@else {
-    <h1 class="text-center py-3">{{mounth}}</h1>
+    <h1 class="text-center fw-light py-3">{{mounth}}</h1>
     <div class="row g-3">
         @if(mounth === "June"){
         @for (item of [].constructor(30); track $index) {
         <div class="col_customer">
-            <div class="card h-100">
+            <div class="card h-100 border-0">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
-                <div class="card-body text-center">
-                    <app-modal [data]="$index+1" [mounth]="mounth"></app-modal>
+                <div class="d-flex justify-content-center align-items-center p-3">
+                    <app-modal [data]="$index+1" [mounth]="mounth"
+                        (buttonClicked)="onFiglioButtonClick($index)"></app-modal>
                 </div>
             </div>
         </div>
@@ -39,10 +40,11 @@
         }@else {
         @for (item of [].constructor(31); track $index) {
         <div class="col_customer">
-            <div class="card h-100">
+            <div class="card h-100 border-0">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
-                <div class="card-body text-center">
-                    <app-modal [data]="$index+1" [mounth]="mounth"></app-modal>
+                <div class="d-flex justify-content-center align-items-center p-3">
+                    <app-modal [data]="$index+1" [mounth]="mounth"
+                        (buttonClicked)="onFiglioButtonClick($index)"></app-modal>
 
                 </div>
             </div>
@@ -52,15 +54,24 @@
 
     </div>
     @if (travels) {
-    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 my-5">
+
+    <h2 class="text-center display-3 pt-3">Your Trip</h2>
+
+    <div class="row row-cols-2 row-cols-md-3 my-5 g-3">
         @for (travel of travels; track $index) {
         <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="text-center py-1">{{travel.place}}</h2>
-                    <h4>{{travel.date}}</h4>
-                    <img class="mw-100 rounded-2" src="{{travel.image}}" alt="">
-                    <p>{{travel.description}}</p>
+            <div class="card_custom">
+                <div class="box_image">
+                    @if (travel.image) {
+                    <img class="mw-100" src="{{travel.image}}" alt="">
+                    }@else {
+                    <img class="mw-100" src="/not_available.jpg" alt="" style="object-fit: contain;">
+                    }
+                </div>
+                <div class="card-body px-5 py-2">
+                    <h4 class="text-center fw-light">{{travel.date}}</h4>
+                    <h2 class="text-center fw-light py-3">{{travel.place}}</h2>
+                    <p class="text-center">{{travel.description}}</p>
                 </div>
             </div>
         </div>
@@ -79,11 +90,29 @@
         width: calc(100%/7);
 
         @media (max-width: 992px) {
-            width: calc(100%/4);
+            width: calc(100%/5);
         }
 
         @media (max-width: 576px) {
-            width: calc(100%/2);
+            width: calc(100%/4);
+        }
+    }
+
+    .card_custom {
+        height: 100%;
+        border-radius: 50px;
+        overflow: hidden;
+        background-color: white;
+
+        .box_image {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                aspect-ratio: 16/9;
+                object-fit: cover;
+            }
         }
     }
 </style>
