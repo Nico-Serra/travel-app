@@ -21,6 +21,7 @@ export class HomeComponent {
   formInit = true;
   mounth = "June";
   travels: Array<{ place: string, date: string, description: string, image: string, indexOfMounth: number }> = [];
+  clickDelete = false;
 
 
   saveMount() {
@@ -51,5 +52,11 @@ export class HomeComponent {
     //console.log(`Il pulsante del componente figlio è stato cliccato! ${index}`);
     this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
     this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
+    this.clickDelete = !this.clickDelete;
+    
+    
+    
   }
+
+
 }

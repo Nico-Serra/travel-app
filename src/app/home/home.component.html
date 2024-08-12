@@ -23,7 +23,7 @@
 
 
     }@else {
-    <h1 class="text-center fw-light py-3">{{mounth}}</h1>
+    <h1 class="text-center display-3 py-3">{{mounth}}</h1>
     <div class="row g-3">
         @if(mounth === "June"){
         @for (item of [].constructor(30); track $index) {
@@ -31,8 +31,8 @@
             <div class="card h-100 border-0">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
                 <div class="d-flex justify-content-center align-items-center p-3">
-                    <app-modal [data]="$index+1" [mounth]="mounth"
-                        (buttonClicked)="onButtonClick($index)"></app-modal>
+                    <app-modal [data]="$index+1" [mounth]="mounth" (buttonClicked)="onButtonClick($index)"
+                        [updateTravels]="clickDelete"></app-modal>
                 </div>
             </div>
         </div>
@@ -43,8 +43,7 @@
             <div class="card h-100 border-0">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
                 <div class="d-flex justify-content-center align-items-center p-3">
-                    <app-modal [data]="$index+1" [mounth]="mounth"
-                        (buttonClicked)="onButtonClick($index)"></app-modal>
+                    <app-modal [data]="$index+1" [mounth]="mounth" (buttonClicked)="onButtonClick($index)"></app-modal>
 
                 </div>
             </div>
@@ -53,9 +52,11 @@
         }
 
     </div>
-    @if (travels) {
 
     <h2 class="text-center display-3 pt-3">Your Trip</h2>
+
+    @if (travels.length > 0) {
+
 
     <div class="row row-cols-2 row-cols-md-3 my-5 g-3">
         @for (travel of travels; track $index) {
@@ -76,13 +77,19 @@
                     <p class="text-center">{{travel.description}}</p>
                 </div>
                 <div class="deleteCard">
-                    <app-delete-trip [index]="$index" [travel]="travel" (deleteClicked)="onDeleteClick()"></app-delete-trip>
+                    <app-delete-trip [index]="$index" [travel]="travel"
+                        (deleteClicked)="onDeleteClick()"></app-delete-trip>
                 </div>
             </div>
         </div>
         }
     </div>
+    }@else {
+    <div class="text-center">
+        <a href="#jumbotronId">Add your first trip</a>
+    </div>
     }
+
     }
 
 

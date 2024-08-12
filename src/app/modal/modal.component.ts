@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { log } from 'console';
 
@@ -10,9 +10,10 @@ import { log } from 'console';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
-export class ModalComponent {
+export class ModalComponent implements OnChanges {
   @Input() data!: number;
   @Input() mounth!: string;
+  @Input() updateTravels!: boolean;
   @Output() buttonClicked = new EventEmitter<void>();
 
 
@@ -34,6 +35,41 @@ export class ModalComponent {
 
     }
 
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['updateTravels']) {
+      console.log('funziona');
+      this.uploadTrip()
+      this.updateTravels = false
+      this.visible = false
+
+      for (let i = 0; i < this.travels.length; i++) {
+        const element = this.travels[i];
+        //console.log(element);
+        if (this.data === element.indexOfMounth) {
+          this.visible = true
+        }
+
+      }
+
+
+
+      //console.log(this.travels.length === 0);
+
+      if (this.travels.length === 0) {
+        this.visible = false
+        this.updateTravels = false
+      }
+
+    }
+  }
+
+  uploadTrip() {
+    this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
+    //console.log(this.travels);
+
   }
 
   saveTrip() {
@@ -43,7 +79,8 @@ export class ModalComponent {
       description: this.description,
       image: this.image,
       date: this.data + ' ' + this.mounth,
-      indexOfMounth: this.data
+      indexOfMounth: this.data,
+      visible: this.visible,
     })
 
     //console.log(this.travels);
@@ -59,6 +96,7 @@ export class ModalComponent {
     this.visible = true
 
   }
+
 
 
 
