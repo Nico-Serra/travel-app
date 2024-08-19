@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
 import { JumbotronComponent } from '../jumbotron/jumbotron.component';
 import { DeleteTripComponent } from '../delete-trip/delete-trip.component';
+import { EditTripComponent } from '../edit-trip/edit-trip.component';
 
 
 
@@ -11,7 +12,7 @@ import { DeleteTripComponent } from '../delete-trip/delete-trip.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, ModalComponent, JumbotronComponent, DeleteTripComponent],
+  imports: [FormsModule, ModalComponent, JumbotronComponent, DeleteTripComponent, EditTripComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -43,19 +44,25 @@ export class HomeComponent {
   }
 
   onButtonClick(index: number) {
-    //console.log(`Il pulsante del componente figlio è stato cliccato! ${index}`);
     this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
     this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
   }
 
   onDeleteClick() {
-    //console.log(`Il pulsante del componente figlio è stato cliccato! ${index}`);
     this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
     this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
     this.clickDelete = !this.clickDelete;
-    
-    
-    
+
+
+
+  }
+
+  onEditClick() {
+    //console.log('ciao');
+    this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
+    //console.log(this.travels);
+    this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
+
   }
 
 

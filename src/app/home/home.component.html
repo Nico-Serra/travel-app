@@ -58,7 +58,7 @@
     @if (travels.length > 0) {
 
 
-    <div class="row row-cols-2 row-cols-md-3 my-5 g-3">
+    <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 my-5 g-3">
         @for (travel of travels; track $index) {
         <div class="col">
             <div class="card_custom">
@@ -76,9 +76,14 @@
                     <h2 class="text-center fw-light py-3">{{travel.place}}</h2>
                     <p class="text-center">{{travel.description}}</p>
                 </div>
-                <div class="deleteCard">
-                    <app-delete-trip [index]="$index" [travel]="travel"
-                        (deleteClicked)="onDeleteClick()"></app-delete-trip>
+                <div class="d-flex w-100">
+                    <div class="editTrip bg-success w-100 text-center">
+                        <app-edit-trip [index]="$index" [travel]="travel" (editClicked)="onEditClick()"></app-edit-trip>
+                    </div>
+                    <div class="deleteCard bg-danger w-100 text-center">
+                        <app-delete-trip [index]="$index" [travel]="travel"
+                            (deleteClicked)="onDeleteClick()"></app-delete-trip>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,1 +1,60 @@
-<p>edit-trip works!</p>
+<!-- Modal trigger button -->
+<button type="button" class="btn_delete" data-bs-toggle="modal" [attr.data-bs-target]="'#editmodalId'+ index"
+    (click)="updateData()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-pen" viewBox="0 0 16 16">
+        <path
+            d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+    </svg>
+</button>
+
+<!-- Modal Body -->
+<!-- if you want to close by clicking outside the modal, edit the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+<div class="modal fade" id="editmodalId{{index}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-lighter" id="modalTitleId{{index}}">
+                    Do you want edit this trip?
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="mb-3">
+                            <label for="" class="form-label">What do you want to visit?</label>
+                            <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                                placeholder="ex. Roma" required [(ngModel)]="place" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Add link for image </label>
+                            <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                                placeholder="https://picsum.photos/200/300" [(ngModel)]="image" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Description</label>
+                            <textarea class="form-control" name="" id="" rows="3" [(ngModel)]="description"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="updateTrip()">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style scoped>
+    .btn_delete {
+        padding: 1rem;
+        border: none;
+        background-color: transparent;
+    }
+</style>
