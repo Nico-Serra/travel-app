@@ -40,7 +40,7 @@ export class ModalComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['updateTravels']) {
-      console.log('funziona');
+      //console.log('funziona');
       this.uploadTrip()
       this.updateTravels = false
       this.visible = false

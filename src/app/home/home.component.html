@@ -43,7 +43,8 @@
             <div class="card h-100 border-0">
                 <div class="card-title text-center p-1">{{$index+1}}</div>
                 <div class="d-flex justify-content-center align-items-center p-3">
-                    <app-modal [data]="$index+1" [mounth]="mounth" (buttonClicked)="onButtonClick($index)"></app-modal>
+                    <app-modal [data]="$index+1" [mounth]="mounth" (buttonClicked)="onButtonClick($index)"
+                        [updateTravels]="clickDelete"></app-modal>
 
                 </div>
             </div>
@@ -74,7 +75,11 @@
                         <h4 class="text-center fw-light text-white p-2">{{travel.date}}</h4>
                     </div>
                     <h2 class="text-center fw-light py-3">{{travel.place}}</h2>
-                    <p class="text-center">{{travel.description}}</p>
+                    @if (travel.description) {
+                    <p class="text-center w-100 textCut">{{travel.description}}</p>
+                    } @else {
+                    <p class="text-center w-100" style="color: lightgray;">Nessuna descrizione</p>
+                    }
                 </div>
                 <div class="d-flex w-100">
                     <div class="editTrip bg-success w-100 text-center">
@@ -138,6 +143,12 @@
                 aspect-ratio: 16/9;
                 object-fit: cover;
             }
+        }
+
+        .textCut {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 </style>

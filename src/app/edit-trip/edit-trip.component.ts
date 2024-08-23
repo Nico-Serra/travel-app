@@ -28,6 +28,7 @@ export class EditTripComponent {
   }
 
   updateTrip() {
+    this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
 
     for (let i = 0; i < this.travels.length; i++) {
       const element = this.travels[i];
