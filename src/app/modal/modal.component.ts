@@ -1,14 +1,17 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { log } from 'console';
+import { GeocodingService } from '../geocoding.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, HttpClientModule],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+  styleUrl: './modal.component.css',
+  providers: [GeocodingService]
 })
 export class ModalComponent implements OnChanges {
   @Input() data!: number;
@@ -23,6 +26,23 @@ export class ModalComponent implements OnChanges {
   description = '';
   image = '';
   travels = JSON.parse(localStorage.getItem("travels") || "[]");
+
+  coordinates: [number, number] | null = null;
+
+  constructor(private geocodingService: GeocodingService) {}
+
+  geocode() {
+    this.geocodingService.geocodeAddress(this.place).subscribe(
+      coords => {
+        this.coordinates = coords;
+        console.log(this.coordinates);
+        
+      },
+      error => {
+        console.error('Errore di geocodifica:', error);
+      }
+    );
+  }
 
   ngOnInit() {
     //console.log(this.mounth);
@@ -73,34 +93,36 @@ export class ModalComponent implements OnChanges {
   }
 
   saveTrip() {
-
-    this.travels.push({
-      place: this.place,
-      description: this.description,
-      image: this.image,
-      date: this.data + ' ' + this.mounth,
-      indexOfMounth: this.data,
-      visible: this.visible,
-    })
-
-    //console.log(this.travels);
-
-    localStorage.setItem(`travels`, JSON.stringify(this.travels))
-    this.buttonClicked.emit();
-
-
-
-    this.place = '';
-    this.description = '';
-    this.image = '';
-    this.visible = true
+    this.geocodingService.geocodeAddress(this.place).subscribe(
+      coords => {
+        this.coordinates = coords;
+        console.log('Coordinate ricevute:', this.coordinates);
+  
+        this.travels.push({
+          place: this.place,
+          description: this.description,
+          image: this.image,
+          date: this.data + ' ' + this.mounth,
+          indexOfMounth: this.data,
+          visible: this.visible,
+          coordinates: this.coordinates
+        });
+  
+        localStorage.setItem('travels', JSON.stringify(this.travels));
+        this.buttonClicked.emit();
+  
+        this.place = '';
+        this.description = '';
+        this.image = '';
+        this.visible = true;
+        this.coordinates = null;
+      },
+      error => {
+        console.error('Errore di geocodifica:', error);
+      }
+    );
 
   }
-
-
-
-
-
 
 
 }
