@@ -23,7 +23,7 @@ export class HomeComponent {
 
   formInit = true;
   mounth = "June";
-  travels: Array<{ place: string, date: string, description: string, image: string, indexOfMounth: number }> = [];
+  travels: Array<{ place: string, date: string, description: string, image: string, indexOfMounth: number, coordinates: [number,number] }> = [];
   clickDelete = false;
 
 

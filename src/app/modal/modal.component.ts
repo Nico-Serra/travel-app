@@ -35,7 +35,7 @@ export class ModalComponent implements OnChanges {
     this.geocodingService.geocodeAddress(this.place).subscribe(
       coords => {
         this.coordinates = coords;
-        console.log(this.coordinates);
+        //console.log(this.coordinates);
         
       },
       error => {

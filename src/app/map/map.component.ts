@@ -46,11 +46,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
   private async updateMarkers(): Promise<void> {
     if (!this.isBrowser || !this.map) return;
 
-    // Rimuovi i marker esistenti
+
     this.markers.forEach(marker => this.map.removeLayer(marker));
     this.markers = [];
 
-    // Aggiungi nuovi marker
+
     this.travels.forEach(travel => {
       if (travel.coordinates) {
         const marker = this.L.marker(travel.coordinates)
@@ -60,7 +60,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
       }
     });
 
-    // Adatta la vista della mappa per includere tutti i marker
+
     if (this.markers.length > 0) {
       const group = this.L.featureGroup(this.markers);
       this.map.fitBounds(group.getBounds().pad(0.1));
