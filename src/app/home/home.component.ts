@@ -5,6 +5,8 @@ import { ModalComponent } from '../modal/modal.component';
 import { JumbotronComponent } from '../jumbotron/jumbotron.component';
 import { DeleteTripComponent } from '../delete-trip/delete-trip.component';
 import { EditTripComponent } from '../edit-trip/edit-trip.component';
+import { MapComponent } from '../map/map.component';
+
 
 
 
@@ -12,7 +14,7 @@ import { EditTripComponent } from '../edit-trip/edit-trip.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, ModalComponent, JumbotronComponent, DeleteTripComponent, EditTripComponent],
+  imports: [FormsModule, ModalComponent, JumbotronComponent, DeleteTripComponent, EditTripComponent, MapComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
