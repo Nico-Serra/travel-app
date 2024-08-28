@@ -1,0 +1,48 @@
+   .col_customer {
+        width: calc(100%/7);
+
+        @media (max-width: 992px) {
+            width: calc(100%/5);
+        }
+
+        @media (max-width: 576px) {
+            width: calc(100%/4);
+        }
+    }
+
+    .card_custom {
+        height: 100%;
+        border-radius: 50px;
+        overflow: hidden;
+        background-color: white;
+        position: relative;
+
+        a {
+            color: #00171f;
+        }
+
+        .date {
+            width: 100px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: #00171f;
+        }
+
+        .box_image {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                aspect-ratio: 16/9;
+                object-fit: cover;
+            }
+        }
+
+        .textCut {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    }

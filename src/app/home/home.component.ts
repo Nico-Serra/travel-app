@@ -24,10 +24,16 @@ import { SingleTripComponent } from '../single-trip/single-trip.component';
   
 })
 export class HomeComponent {
-  constructor(private localStorageService: LocalStorageService,  private router: Router,) { }
+  constructor(private localStorageService: LocalStorageService,  private router: Router,) { 
+    this.mounth = this.months[new Date().getMonth()];
+  }
 
   formInit = true;
-  mounth = "June";
+  mounth: string ="";
+  months: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
   travels: Array<{id:number, place: string, date: string, description: string, image: string, indexOfMounth: number, coordinates: [number,number] }> = [];
   clickDelete = false;
 

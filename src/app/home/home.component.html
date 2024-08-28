@@ -1,3 +1,4 @@
+<!-- Generate Jumbotron -->
 @if (formInit) {
 <app-jumbotron [title]="'Welcome to Travel App'" [subTitle]="'Here you can plan and manage your trips'"></app-jumbotron>
 }@else {
@@ -5,14 +6,15 @@
     [subTitle]="'Click on + and add the data for yout trip'"></app-jumbotron>
 }
 <div class="container py-3">
+    <!-- Selected Mounth and generate Calendar -->
     @if(formInit){
     <div class="mb-3" id="selectMounth">
         <label for="" class="form-label">Mounth</label>
         <div class="d-flex">
-            <select class="form-select form-select-lg" name="" id="" [(ngModel)]="mounth" required>
-                <option selected value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
+            <select class="form-select form-select-lg" id="monthSelect" [(ngModel)]="mounth" required>
+                @for (mounth of months; track $index) {
+                <option [value]="mounth">{{ mounth }}</option>
+                }
             </select>
             <button type="submit" class="btn btn_primary" (click)="saveMount()">
                 Send
@@ -20,12 +22,10 @@
 
         </div>
     </div>
-
-
     }@else {
     <h1 class="text-center display-3 py-3">{{mounth}}</h1>
     <div class="row g-3">
-        @if(mounth === "June"){
+        @if(mounth === "June"||mounth === "April"||mounth === "September"||mounth === "November"){
         @for (item of [].constructor(30); track $index) {
         <div class="col_customer">
             <div class="card h-100 border-0">
@@ -33,6 +33,19 @@
                 <div class="d-flex justify-content-center align-items-center p-3">
                     <app-modal [data]="$index+1" [mounth]="mounth" (buttonClicked)="onButtonClick($index)"
                         [updateTravels]="clickDelete"></app-modal>
+                </div>
+            </div>
+        </div>
+        }
+        }@else if (mounth === "February") {
+        @for (item of [].constructor(28); track $index) {
+        <div class="col_customer">
+            <div class="card h-100 border-0">
+                <div class="card-title text-center p-1">{{$index+1}}</div>
+                <div class="d-flex justify-content-center align-items-center p-3">
+                    <app-modal [data]="$index+1" [mounth]="mounth" (buttonClicked)="onButtonClick($index)"
+                        [updateTravels]="clickDelete"></app-modal>
+
                 </div>
             </div>
         </div>
@@ -51,13 +64,14 @@
         </div>
         }
         }
-
+        <!-- Selected Mounth and generate Calendar -->
     </div>
 
     <h2 class="text-center display-3 pt-3">Your Trip</h2>
 
     @if (travels.length > 0) {
 
+    <!-- Generate a card for trip -->
 
     <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 my-5 g-3">
         @for (travel of travels; track $index) {
@@ -97,10 +111,13 @@
         }
     </div>
 
-
-
     <app-map [travels]="travels"></app-map>
-    }@else {
+    }
+
+    <!-- Generate a card for trip -->
+
+    @else {
+        <!-- Generate Jumbotron -->
     <div class="text-center">
         <a href="#jumbotronId">Add your first trip</a>
     </div>
@@ -113,7 +130,7 @@
 
 </div>
 
-<style scoped>
+<style>
     .col_customer {
         width: calc(100%/7);
 
@@ -132,8 +149,8 @@
         overflow: hidden;
         background-color: white;
         position: relative;
-        
-        a{
+
+        a {
             color: #00171f;
         }
 
