@@ -44,15 +44,17 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('mounth')) {
-      this.formInit = false;
-      this.mounth = localStorage.getItem('mounth')!
+    if (typeof localStorage !== 'undefined') {
+      if (localStorage.getItem('mounth')) {
+        this.formInit = false;
+        this.mounth = localStorage.getItem('mounth')!;
+      }
+  
+      this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
+      this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
+    } else {
+      console.warn('localStorage is not available.');
     }
-
-    this.travels = JSON.parse(localStorage.getItem("travels") || "[]");
-    this.travels.sort((a, b) => a.indexOfMounth - b.indexOfMounth);
-    //console.log(this.travels);
-
   }
 
   onButtonClick(index: number) {
