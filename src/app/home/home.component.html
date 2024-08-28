@@ -63,24 +63,26 @@
         @for (travel of travels; track $index) {
         <div class="col">
             <div class="card_custom">
-                <div class="box_image">
-                    @if (travel.image) {
-                    <img class="mw-100" src="{{travel.image}}" alt="">
-                    }@else {
-                    <img class="mw-100" src="/not_available.jpg" alt="" style="object-fit: contain;">
-                    }
-                </div>
-                <div class="card-body px-5 py-2  d-flex justify-content-center align-items-center flex-column">
-                    <div class="date d-flex justify-content-center align-items-center">
-                        <h4 class="text-center fw-light text-white p-2">{{travel.date}}</h4>
+                <a [routerLink]="['/travel', travel.place]" class="text-decoration-none">
+                    <div class="box_image">
+                        @if (travel.image) {
+                        <img class="mw-100" src="{{travel.image}}" alt="">
+                        }@else {
+                        <img class="mw-100" src="/not_available.jpg" alt="" style="object-fit: contain;">
+                        }
                     </div>
-                    <h2 class="text-center fw-light py-3">{{travel.place}}</h2>
-                    @if (travel.description) {
-                    <p class="text-center w-100 textCut">{{travel.description}}</p>
-                    } @else {
-                    <p class="text-center w-100" style="color: lightgray;">Nessuna descrizione</p>
-                    }
-                </div>
+                    <div class="card-body px-5 py-2  d-flex justify-content-center align-items-center flex-column">
+                        <div class="date d-flex justify-content-center align-items-center">
+                            <h4 class="text-center fw-light text-white p-2">{{travel.date}}</h4>
+                        </div>
+                        <h2 class="text-center fw-light py-3">{{travel.place}}</h2>
+                        @if (travel.description) {
+                        <p class="text-center w-100 textCut">{{travel.description}}</p>
+                        } @else {
+                        <p class="text-center w-100" style="color: lightgray;">Nessuna descrizione</p>
+                        }
+                    </div>
+                </a>
                 <div class="d-flex w-100">
                     <div class="editTrip bg-success w-100 text-center">
                         <app-edit-trip [index]="$index" [travel]="travel" (editClicked)="onEditClick()"></app-edit-trip>
@@ -95,7 +97,7 @@
         }
     </div>
 
-    <app-map [travels]="travels" ></app-map>
+    <app-map [travels]="travels"></app-map>
     }@else {
     <div class="text-center">
         <a href="#jumbotronId">Add your first trip</a>
@@ -128,6 +130,10 @@
         overflow: hidden;
         background-color: white;
         position: relative;
+        
+        a{
+            color: #00171f;
+        }
 
         .date {
             width: 100px;

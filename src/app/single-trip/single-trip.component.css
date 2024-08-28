@@ -1,0 +1,19 @@
+.box_image {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        max-width: 700px;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 50px;
+    }
+}
+
+.date {
+    width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: #00171f;
+}
