@@ -5,10 +5,12 @@
 <app-jumbotron [title]="'Select the days you will need to travel'"
     [subTitle]="'Click on + and add the data for yout trip'"></app-jumbotron>
 }
-<div class="container py-3">
+<div class="container py-3 my-3">
     <!-- Selected Mounth and generate Calendar -->
     @if(formInit){
-    <div class="mb-3" id="selectMounth">
+
+    <h2 class="text-center fw-light py-5">Select your mounth for travels</h2>
+    <div class="px-5 pb-5" id="selectMounth">
         <label for="" class="form-label">Mounth</label>
         <div class="d-flex">
             <select class="form-select form-select-lg" id="monthSelect" [(ngModel)]="mounth" required>
@@ -23,7 +25,40 @@
         </div>
     </div>
     }@else {
-    <h1 class="text-center display-3 py-3">{{mounth}}</h1>
+
+    <div class="d-flex justify-content-center align-items-center gap-3">
+        <h1 class="text-center display-3 py-3">{{mounth}}</h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalId">
+            Change Mounth
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Are you sure you want to change the month?
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>If you change the month, the stages that are present in this month will be deleted</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                            (click)="deleteMounth()">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="row g-3">
         @if(mounth === "June"||mounth === "April"||mounth === "September"||mounth === "November"){
         @for (item of [].constructor(30); track $index) {
@@ -117,7 +152,7 @@
     <!-- Generate a card for trip -->
 
     @else {
-        <!-- Generate Jumbotron -->
+    <!-- Generate Jumbotron -->
     <div class="text-center">
         <a href="#jumbotronId">Add your first trip</a>
     </div>
@@ -129,54 +164,3 @@
 
 
 </div>
-
-<style>
-    .col_customer {
-        width: calc(100%/7);
-
-        @media (max-width: 992px) {
-            width: calc(100%/5);
-        }
-
-        @media (max-width: 576px) {
-            width: calc(100%/4);
-        }
-    }
-
-    .card_custom {
-        height: 100%;
-        border-radius: 50px;
-        overflow: hidden;
-        background-color: white;
-        position: relative;
-
-        a {
-            color: #00171f;
-        }
-
-        .date {
-            width: 100px;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            background-color: #00171f;
-        }
-
-        .box_image {
-            display: flex;
-            justify-content: center;
-
-            img {
-                width: 100%;
-                aspect-ratio: 16/9;
-                object-fit: cover;
-            }
-        }
-
-        .textCut {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-    }
-</style>

@@ -85,5 +85,10 @@ export class HomeComponent {
 
   }
 
+  deleteMounth(){
+    localStorage.clear();
+    this.formInit = true;
+  }
+
 
 }
