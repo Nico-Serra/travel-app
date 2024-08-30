@@ -108,7 +108,7 @@
 
     <!-- Generate a card for trip -->
 
-    <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 my-5 g-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 my-5 g-3">
         @for (travel of travels; track $index) {
         <div class="col">
             <div class="card_custom">
@@ -128,7 +128,8 @@
                         @if (travel.description) {
                         <p class="text-center w-100 textCut">{{travel.description}}</p>
                         } @else {
-                        <p class="text-center w-100" style="color: lightgray;">Nessuna descrizione</p>
+                        <p class="text-center w-100" style="color: lightgray;">
+                            Description none</p>
                         }
                     </div>
                 </a>

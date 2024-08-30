@@ -76,9 +76,9 @@
         color: #00171f;
     }
 
-    .card{
-        border-radius: 50px !important;
+    .card{       
         overflow: hidden;
+        border-radius: 50px !important;
         
         .box-image{
 
@@ -87,5 +87,11 @@
                object-fit: cover;
            }
         }
+
+        @media (max-width: 576px) {
+           border-radius: 20px !important;
+       }
+
+
     }
 </style>
