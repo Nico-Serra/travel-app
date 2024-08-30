@@ -16,7 +16,7 @@
             "customWebpackConfig": {
               "path": "custom-webpack.config.js"
             },
-            "outputPath": "dist/travel-app",
+            "outputPath": "dist/travel-app/browser",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
