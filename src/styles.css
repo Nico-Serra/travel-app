@@ -7,4 +7,11 @@ body {
 
 .btn_primary {
     background-color: #00171f;
+    color: white;
+
+    
+}
+
+.btn:hover{
+    border-color: #00171f;
 }
