@@ -13,6 +13,10 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "leaflet",
+              "opencage-api-client"
+            ],
             "customWebpackConfig": {
               "path": "./custom-webpack.config.js"
             },

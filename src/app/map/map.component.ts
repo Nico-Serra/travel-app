@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import 'leaflet/dist/leaflet.css';
+import * as L from 'leaflet';
+
 
 @Component({
   selector: 'app-map',
