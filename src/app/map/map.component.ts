@@ -24,6 +24,13 @@ export class MapComponent implements AfterViewInit, OnChanges {
   async ngAfterViewInit() {
     if (this.isBrowser) {
       this.L = await import('leaflet');
+
+      this.L.Icon.Default.mergeOptions({
+        iconRetinaUrl: 'assets/leaflet/marker-icon-2x.png',
+        iconUrl: 'assets/leaflet/marker-icon.png',
+        shadowUrl: 'assets/leaflet/marker-shadow.png',
+      });
+
       await this.initMap();
     }
   }

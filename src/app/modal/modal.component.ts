@@ -96,7 +96,7 @@ export class ModalComponent implements OnChanges {
     this.geocodingService.geocodeAddress(this.place).subscribe(
       coords => {
         this.coordinates = coords;
-        console.log('Coordinate ricevute:', this.coordinates);
+        //console.log('Coordinate ricevute:', this.coordinates);
   
         this.travels.push({
           place: this.place,
