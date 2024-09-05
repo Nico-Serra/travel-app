@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-welcome-page',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './welcome-page.component.html',
   styleUrl: './welcome-page.component.css'
 })
